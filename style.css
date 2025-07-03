@@ -1,0 +1,332 @@
+/* Disimpan di sini biar gampang diganti */
+:root {
+    --prm: #5aa4bb;       /* Primary Color */
+    --sec: #bbd2e1;       /* Secondary Color */
+    --acc: #a4e6ff;       /* Accent Color */
+    --txt: #e0e0e0;       /* Text Color */
+    --bg-main: #1a1a1a;   /* Main Background */
+    --bg-card: #2c2c2c;   /* Card Background */
+    --shadow-light: rgba(0,0,0,0.4);
+    --shadow-medium: rgba(0,0,0,0.7);
+    --font-poppins: 'Poppins', sans-serif;
+    --font-open-sans: 'Open Sans', sans-serif;
+
+    /* Warna Spesifik Sosial Media */
+    --color-email: #D44638;   /* Warna Email (Google/Gmail Red) */
+    --color-github: #181717;  /* Warna GitHub */
+    --color-instagram: #e13030; /* Warna Instagram (Deep Pink) */
+    --color-whatsapp: #25D366; /* Warna WhatsApp */
+}
+
+/* --- Reset & Gaya Dasar HTML --- */
+body, h1, h2, h3, h4, p, ul, li { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: var(--font-open-sans); line-height: 1.7;
+    color: var(--txt); background-color: var(--bg-main);
+    scroll-behavior: smooth; overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 25px; }
+
+/* --- Utilitas Umum (Kelas Reusable) --- */
+.u-hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    background-color: var(--bg-card);
+    border-radius: 12px;
+}
+.u-hover-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 35px var(--shadow-medium);
+}
+
+/* --- Header & Navigasi --- */
+header {
+    background-color: var(--bg-main); color: var(--txt); padding: 1rem 0;
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 3px 12px var(--shadow-medium);
+    transition: background-color 0.3s ease;
+}
+header.scrolled { background-color: #242424; box-shadow: 0 5px 18px var(--shadow-medium); }
+header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo {
+    font-family: var(--font-poppins); font-size: 1.9rem; font-weight: 700;
+    color: #fff; letter-spacing: -0.5px; transition: color 0.3s ease;
+}
+.logo:hover { color: var(--acc); }
+.nav-links { list-style: none; display: flex; }
+.nav-links li { margin-left: 35px; }
+.nav-links a {
+    font-weight: 600; position: relative; padding-bottom: 7px; color: var(--sec);
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.nav-links a::after {
+    content: ''; width: 0; height: 3px; background: var(--prm);
+    position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+    transition: width 0.3s ease-out; border-radius: 2px;
+}
+.nav-links a:hover { color: var(--prm); transform: translateY(-2px); }
+.nav-links a:hover::after { width: 100%; }
+.burger-menu { display: none; font-size: 1.9rem; cursor: pointer; color: #fff; }
+
+/* --- Bagian Hero (Beranda) --- */
+.hero {
+    background: linear-gradient(135deg, #f50000, #30415d); color: #fff;
+    padding: 120px 0 80px; text-align: center; min-height: 85vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    position: relative; overflow: hidden;
+}
+.hero::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.05) 10%, transparent 40%),
+                radial-gradient(circle at bottom right, rgba(255,255,255,0.05) 10%, transparent 40%);
+    background-size: 200px 200px; opacity: 0.8; animation: backgroundFade 20s ease-in-out infinite alternate;
+}
+@keyframes backgroundFade { from { opacity: 0.8; } to { opacity: 0.6; } }
+.hero .profile-img {
+    width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
+    border: 5px solid rgba(255,255,255,0.9); box-shadow: 0 8px 20px var(--shadow-medium);
+    margin-bottom: 30px; transition: transform 0.3s ease-out;
+}
+.hero .profile-img:hover { transform: scale(1.03); }
+.hero h1 { font-family: var(--font-poppins); font-size: 3.2rem; margin-bottom: 15px; text-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
+.hero p { font-size: 1.1rem; margin-bottom: 30px; max-width: 700px; opacity: 0.95; font-weight: 300; }
+.hero .location { font-size: 0.9rem; opacity: 0.8; margin-top: -10px; margin-bottom: 35px; }
+
+/* --- Gaya Tombol Umum --- */
+.button {
+    display: inline-block; background: linear-gradient(45deg, var(--prm), #74d8ff); color: #fff;
+    padding: 14px 35px; border-radius: 50px; font-weight: 600; font-size: 1rem;
+    transition: all 0.3s ease; box-shadow: 0 6px 15px var(--shadow-medium); letter-spacing: 0.5px;
+}
+.button:hover {
+    background: linear-gradient(45deg, #74d8ff, var(--prm)); transform: translateY(-4px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+/* --- Gaya Umum Section --- */
+section {
+    padding: 90px 0; text-align: center; position: relative; overflow: hidden; background-color: var(--bg-main);
+}
+section:nth-child(even) { background-color: var(--bg-card); }
+section h2 {
+    font-family: var(--font-poppins); font-size: 2.8rem; margin-bottom: 50px;
+    color: var(--sec); position: relative; display: inline-block; letter-spacing: -0.5px;
+}
+section h2::after {
+    content: ''; width: 70px; height: 4px; background: var(--prm);
+    position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%); border-radius: 2px;
+}
+.section-description {
+    font-size: 1.05rem; color: #b0b0b0; max-width: 800px; margin: -30px auto 70px auto; line-height: 1.7;
+}
+
+/* --- Konten Section (About, Skills, Education, Hobbies) --- */
+.about-content { text-align: left; max-width: 850px; margin: 0 auto; padding-bottom: 30px; }
+.about-content p { font-size: 1rem; margin-bottom: 15px; line-height: 1.8; color: var(--txt); }
+.skills-grid, .hobbies-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px; text-align: center; max-width: 900px; margin: 0 auto;
+}
+.skill-item, .hobby-item, .education-card {
+    padding: 30px; display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+/* Ingat: Tambahkan class "u-hover-card" di HTML untuk elemen-elemen ini */
+.skill-item i, .hobby-item i {
+    font-size: 3.5rem; color: var(--prm); margin-bottom: 18px; transition: color 0.3s ease;
+}
+.skill-item:hover i, .hobby-item:hover i { color: var(--acc); }
+.skill-item h4, .hobby-item h4 {
+    font-family: var(--font-poppins); font-size: 1.4rem; color: var(--sec); margin-bottom: 10px;
+}
+.skill-item p, .hobby-item p { font-size: 0.95rem; color: var(--txt); margin: 0; }
+
+/* --- Gaya Khusus untuk Kartu Pendidikan --- */
+.education-card {
+    text-align: left; max-width: 700px; margin-top: 50px; padding: 35px;
+}
+/* Ingat: Tambahkan class "u-hover-card" di HTML untuk elemen ini */
+.education-card h3 {
+    font-family: var(--font-poppins); font-size: 2.2rem; color: var(--sec);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.education-card h3 i { color: var(--acc); font-size: 1.3em; }
+.education-card p { font-size: 1rem; color: var(--txt); margin-bottom: 10px; }
+.education-card .duration { font-size: 0.9rem; color: #b0b0b0; font-style: italic; margin-bottom: 20px; }
+.education-card ul { list-style: none; margin-left: 0; font-size: 0.95rem; color: var(--txt); }
+.education-card ul li {
+    margin-bottom: 8px; padding-left: 22px; position: relative;
+}
+.education-card ul li::before {
+    content: '\2022'; color: var(--prm); font-weight: bold;
+    display: inline-block; width: 1em; margin-left: -1em;
+}
+
+/* --- Bagian Kontak --- */
+.contact { background-color: var(--bg-main); color: var(--txt); padding-bottom: 90px; }
+.contact h2 { color: #fff; }
+.contact h2::after { background: var(--acc); }
+.contact p {
+    font-size: 1.1rem; margin-bottom: 50px; max-width: 700px;
+    margin: -30px auto 70px auto; opacity: 0.9; font-weight: 300;
+}
+.contact-methods { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
+
+/* Gaya Default untuk semua link kontak (warna default) */
+.contact-link {
+    background: linear-gradient(45deg, #3a506b, #4b6a8a); /* Default gradient */
+    color: #fff;
+    padding: 14px 28px; border-radius: 40px; font-weight: 500; font-size: 1rem;
+    display: flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+}
+.contact-link i { font-size: 1.2em; } /* Ikon di dalam link kontak */
+.contact-link:hover {
+    background: linear-gradient(45deg, #4b6a8a, #3a506b); /* Hover default gradient */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+/* Bagian Galeri */
+.gallery {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+.gallery h2 { margin-bottom: 20px; color: #333; }
+.gallery .section-description {
+    margin: 0 auto 40px; /* Top, Right/Left auto, Bottom */
+    color: #666;
+    max-width: 700px;
+}
+
+/* Styling Carousel */
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    z-index: 10;
+    border-radius: 50%;
+    inline-size: 50px;
+    block-size: 50px;
+    display: grid;
+    place-items: center;
+    transition: background-color .3s ease;
+}
+.carousel-btn:hover { background-color: rgba(0,0,0,.8); }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+.dot {
+    block-size: 12px;
+    inline-size: 12px;
+    background-color: rgba(255,255,255,.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color .3s ease, transform .2s ease;
+}
+.dot.active { background-color: #007bff; transform: scale(1.2); }
+
+/* Gaya untuk WhatsApp */
+.contact-link.whatsapp {
+    background: linear-gradient(45deg, var(--color-whatsapp), #1a01a7);
+}
+.contact-link.whatsapp:hover {
+    background: linear-gradient(45deg, #128C7E, var(--color-whatsapp));
+}
+
+/* Gaya untuk Email */
+.contact-link.email { /* Anda perlu menambahkan class="email" di HTML */
+    background: linear-gradient(45deg, var(--color-email), #eeea02); /* Warna Email */
+}
+.contact-link.email:hover {
+    background: linear-gradient(45deg, #eeea02, var(--color-email));
+}
+
+/* Gaya untuk GitHub */
+.contact-link.github { /* Anda perlu menambahkan class="github" di HTML */
+    background: linear-gradient(45deg, var(--color-github), #404040); /* Warna GitHub */
+}
+.contact-link.github:hover {
+    background: linear-gradient(45deg, #404040, var(--color-github));
+}
+
+/* Gaya untuk Instagram */
+.contact-link.instagram { /* Anda perlu menambahkan class="instagram" di HTML */
+    background: linear-gradient(45deg, #f09433, #e1306c, #833ab4); /* Gradasi Instagram */
+    /* Warna gradasi bisa disesuaikan atau pakai satu warna solid */
+}
+.contact-link.instagram:hover {
+    background: linear-gradient(45deg, #833ab4, #e1306c, #f09433); /* Balik gradasi saat hover */
+}
+
+
+.location-info { font-size: 0.9rem; color: #a0a0a0; margin-top: 25px; }
+
+/* --- Footer --- */
+footer { background-color: #0d0d0d; color: #888; padding: 30px 0; text-align: center; font-size: 0.85rem; }
+
+/* --- Responsive Design (Mobile) --- */
+@media (max-width: 768px) {
+    .container { padding: 0 15px; }
+    header .nav-links {
+        display: none; flex-direction: column; width: 100%;
+        position: absolute; top: 65px; left: 0; background-color: var(--bg-main);
+        box-shadow: 0 4px 10px var(--shadow-medium); padding: 15px 0;
+    }
+    header .nav-links.active { display: flex; }
+    header .nav-links li { margin: 12px 0; text-align: center; }
+    header .burger-menu { display: block; }
+    .hero { padding: 100px 0 60px; min-height: 70vh; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1rem; }
+    .hero .profile-img { width: 160px; height: 160px; }
+    .button { padding: 12px 30px; font-size: 0.9rem; }
+    section { padding: 60px 0; }
+    section h2 { font-size: 2.2rem; margin-bottom: 40px; }
+    .section-description { margin: -20px auto 50px auto; }
+    .skills-grid, .hobbies-grid { grid-template-columns: 1fr; }
+    .skill-item, .hobby-item, .education-card { padding: 25px; margin: 0 15px; }
+    .education-card h3 { font-size: 1.8rem; }
+    .contact p { font-size: 1rem; }
+    .contact-methods { flex-direction: column; gap: 15px; }
+    /* Pastikan semua link kontak responsif di mobile */
+    .contact-link, .contact-link.whatsapp, .contact-link.email, .contact-link.github, .contact-link.instagram {
+        width: 90%; margin: 0 auto; padding: 12px 25px; font-size: 0.95rem;
+    }
+}
